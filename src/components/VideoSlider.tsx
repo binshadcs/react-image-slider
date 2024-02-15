@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { ArrowBigLeft, ArrowBigRight, CircleDot, Circle } from 'lucide-react'
-import './ImageSlider.css'
+import './VideoSlider.css'
 
 type ImageSliderProps = {
     images : {
@@ -9,7 +9,7 @@ type ImageSliderProps = {
     }[]
 }
 
-export default function ImageSlider({images} : ImageSliderProps) {
+export default function VideoSlider({images} : ImageSliderProps) {
     const [imageIndex, setImageIndex] = useState(0);
     useEffect(()=> {
         const interval = setInterval(showNextImage, 3000)
@@ -36,20 +36,26 @@ export default function ImageSlider({images} : ImageSliderProps) {
         <div style={{width: "100%", height: "100%", display: "flex", overflow: "hidden"}}>
             {
                 images.map(({url, alt}, index) => (
-                    <img 
-                        key={url} 
-                        src={url} 
-                        alt={alt} 
-                        aria-hidden={imageIndex !== index}
-                        className="img-slider-img" 
-                        style={{ translate: `${-100 * imageIndex}%` }} />
+                    // <img 
+                    //     key={url} 
+                    //     src={url} 
+                    //     alt={alt} 
+                    //     aria-hidden={imageIndex !== index}
+                    //     className="img-slider-img" 
+                    //     style={{ translate: `${-100 * imageIndex}%` }} />
+                    <video autoPlay loop muted className="img-slider-img" style={{ translate: `${-100 * imageIndex}%` }}>
+                        <source src={url} key={url} />
+                    </video>
                 ))
             }
         </div>
 
-        <div className="img-slider-heading">
-            <h2>Test </h2>
-            <button>Comtact us </button>  <button>about us </button>
+        <div className="absolute top-[20%] left-[20%] max-w-[700px] text-white lg:top-[30%] lg:max-w-[900px]">
+            <h1 className="text-6xl font-bold">Ensuring Excellence in Every Detail,<br />
+                Our Inspections Define <span className="text-blue-500">Trust and Reliability</span></h1>
+            {/* <p>
+            we go beyond the surface, meticulously examining every aspect to provide you with unparalleled confidence in your investments. Our commitment to precision and transparency sets us apart, making us your trusted partner in quality inspections.
+            </p> */}
         </div>
 
         <button onClick={showPrevImage} className="img-slider-btn" style={{left : "0"}} aria-label="View Prev Image">

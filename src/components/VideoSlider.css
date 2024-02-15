@@ -73,9 +73,3 @@
 .img-slider-btn:focus-visible {
     outline: auto;
 }
-
-.img-slider-heading {
-    position: absolute;
-    top : 50%;
-    left: 50%;
-}
